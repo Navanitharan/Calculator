@@ -2,44 +2,26 @@ let boot = document.head.innerHTML=`<link rel="stylesheet" href="https://cdn.jsd
 
 document.body.style.backgroundColor="#04C98A";
 
-let h1=document.createElement('h1');
-h1.setAttribute("id","title")
-h1.innerText="Calculator"
-h1.style.textAlign="center"
-
-let p=document.createElement("p");
-p.setAttribute("id","description")
-p.innerText="I have created an calculator using only the DOM Manipulation"
-p.style.textAlign="center"
-
 let container=document.createElement("div")
 container.className="Container col-12";
 container.style.display="flex";
-container.style.flexDirection=
 container.style.justifyContent="center";
 container.style.alignItems="center"
-container.style.height="80vh"
+container.style.height="100vh"
 
 
 let calculator=document.createElement("div")
 calculator.className="calculator col-5";
-calculator.style.height="100%";
+calculator.style.height="70%";
 calculator.style.backgroundColor="#000"
 
 let display=document.createElement("div");
 display.className="display"
 display.style.height="40%"
-
-let input=document.createElement("input");
-input.setAttribute("id","result");
-input.style.width="100%";
-input.style.height="100%";
-input.style.padding="10px";
-input.style.backgroundColor="black";
-input.style.color="#0FB483";
-input.style.textAlign="end";
-input.style.border="none"
-input.style.outline="none"
+display.style.color="#0FB483";
+display.style.textAlign="end"
+display.style.fontSize="20px"
+display.style.paddingTop="50px"
 
 let button = document.createElement("div")
 calculator.className="btn col-3";
@@ -48,8 +30,8 @@ button.style.gridTemplateColumns='repeat(4, 1fr)';
 button.style.gap="2px"
 button.style.height="60%"
 
-let btnIds = ['clear', 'add', 'subtract', 'del', '1', '2', '3', '*', '4', '5', '6', 'div', '7', '8', '9', 'Modulo', '0','equal', 'MC',"."]
-let btnLbls=['clear', '+', '-', 'del', '1', '2', '3', '*', '4', '5', '6', '/', '7', '8', '9', '%', '0','=', 'MC',"."]
+let btnIds = ['c', '+', '-', 'del', '1', '2', '3', '*', '4', '5', '6', '/', '7', '8', '9', '%', '0','=', 'MC',"."]
+let btnLbls=['c', '+', '-', 'del', '1', '2', '3', '*', '4', '5', '6', '/', '7', '8', '9', '%', '0','=', 'MC',"."]
 
 
 for(let i=0;i<btnIds.length;i++){
@@ -63,6 +45,7 @@ for(let i=0;i<btnIds.length;i++){
     btn.style.color="#0FB480"
     btn.style.backgroundColor="#0B0D0C"
     btn.style.border="none";
+    btn.style.outline="none"
     btn.addEventListener("mouseover",function(){
         btn.style.backgroundColor="#04C98A";
         btn.style.color="#0B0D0C"
@@ -77,13 +60,21 @@ for(let i=0;i<btnIds.length;i++){
     button.appendChild(btn);
 }
 
-display.appendChild(input);
+document.addEventListener('keypress',function(event){
+    let pressedKey = event.key;
+    console.log(pressedKey);
+    let correspondingButton = document.getElementById(pressedKey);
+    console.log(correspondingButton)
+    if(correspondingButton){
+    handleButtonClick(pressedKey)
+    }
+})
+
 calculator.appendChild(display);
 calculator.appendChild(button);
 
 container.appendChild(calculator);
-document.body.appendChild(h1);
-document.body.appendChild(p);
+
 document.body.appendChild(container);
 
 
@@ -92,16 +83,18 @@ function handleButtonClick(buttonContent){
     inpt+=buttonContent
     switch(inpt){
         case "del":
-            input.value=input.value.slice(0,-1);
+            display.innerText=display.innerText.slice(0,-1);
             break;
-        case 'clear':
-            input.value="";
+        case 'c':
+            display.innerText="";
             break;
         case "=":
-            input.value=eval(input.value);
-            break;    
+            display.innerText=eval(display.innerText);
+            break; 
+        case "MC":
+            break;   
         default:
-            input.value+=buttonContent;    
+            display.innerText+=buttonContent;    
     }
     
 }
