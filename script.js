@@ -1,9 +1,8 @@
-let boot = document.head.innerHTML=`<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">`
-
 document.body.style.backgroundColor="#04C98A";
-
+document.body.style.display="flex"
+document.body.style.justifyContent="center"
 let container=document.createElement("div")
-container.className="Container col-12";
+container.className="Container col-sm-12 col-md-5 col-lg-3";
 container.style.display="flex";
 container.style.justifyContent="center";
 container.style.alignItems="center"
@@ -11,12 +10,13 @@ container.style.height="100vh"
 
 
 let calculator=document.createElement("div")
-calculator.className="calculator col-5";
+calculator.className="calculator col-sm-12 col-md-12";
 calculator.style.height="70%";
+calculator.style.width="100%"
 calculator.style.backgroundColor="#000"
 
 let display=document.createElement("div");
-display.className="display"
+display.className="display col-sm-12 col-md-12"
 display.style.height="40%"
 display.style.color="#0FB483";
 display.style.textAlign="end"
@@ -24,7 +24,7 @@ display.style.fontSize="20px"
 display.style.paddingTop="50px"
 
 let button = document.createElement("div")
-calculator.className="btn col-3";
+calculator.className="btn col-sm-3 col-md-12";
 button.style.display="grid";
 button.style.gridTemplateColumns='repeat(4, 1fr)';
 button.style.gap="2px"
